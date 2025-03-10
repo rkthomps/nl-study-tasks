@@ -1,0 +1,11 @@
+name = "nl-study-tasks"
+version = "0.1.0"
+defaultTargets = ["NlStudyTasks"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+version = "git#v4.16.0"
+
+[[lean_lib]]
+name = "NlStudyTasks"
