@@ -17,6 +17,7 @@ def fac : Nat → Nat
 
 notation n "!" => fac n
 
+@[simp]
 def shiftRange (r : Finset ℕ) (s : ℕ) : Finset ℕ :=
   r.map ⟨λ i => i + s, by simp[Function.Injective]⟩
 
@@ -25,23 +26,29 @@ def shiftRange (r : Finset ℕ) (s : ℕ) : Finset ℕ :=
 def range (s e : ℕ) : Finset ℕ :=
   shiftRange (Finset.range (e - s + 1)) s
 
-theorem shift_sum (s : Finset ℕ) (shift : ℕ) (f : ℕ → ℕ) :
-  ∑ i ∈ range 0 n
+
+example (x y : Set α) (H : x ⊆ y) : x ∩ y = x := by
+  apply Set.ext
+  intro z
+  simp
+  simp [Set.subset_def] at H
+
+
+
+
+
+theorem sum_break_range (s b e : ℕ) (f : ℕ → ℕ) :
+  ∑ i ∈ range s e, f i = ∑ i ∈ range s b, f i + ∑ i ∈ range (b + 1) e, f i := by
+  have h_union : range s e = range s b ∪ range (b + 1) e := by
+    simp
+
+
 
 theorem sum_shift (n : ℕ) : ∑ i ∈ range 0 n, n.choose i = 1 + ∑ i ∈ range 1 n, n.choose i := by
   induction n with
   | zero => simp
   | succ n' ih =>
 
-
-theorem powerset_card (n : ℕ) :
-  ∑ i ∈ range 0 n, Nat.choose n i = 2 ^ n := by
-  induction n with
-  | zero => simp
-  | succ n' ih =>
-    -- ∑_i=0^{n+1} (n+1 choose i) = 1 + ∑_i=1^{n+1} (n+1 choose i)
-    have h1: ∑ i ∈ range 0 (n' + 1), Nat.choose (n' + 1) i = 1 + ∑ i ∈ range 1 (n' + 1), Nat.choose (n' + 1) i := by
-      ring_nf
 
 
 

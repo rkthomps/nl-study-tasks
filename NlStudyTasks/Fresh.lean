@@ -19,6 +19,7 @@ theorem sum_choose_exp (n : ℕ) : ∑ i ∈ Finset.range (n + 1), n.choose i = 
         have h_disjoint : Disjoint newRange {0} := by simp [newRange]
         apply (Finset.sum_union h_disjoint)
     rw [h_one_plus]
+    simp
 
     have h_newRange : newRange ∪ {0} = Finset.range (n' + 1 + 1) := by
       simp [newRange]
