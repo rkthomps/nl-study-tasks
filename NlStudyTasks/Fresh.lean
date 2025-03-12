@@ -78,3 +78,4 @@ theorem sum_choose_exp' (n : ℕ) : ∑ i ∈ Finset.range (n + 1), n.choose i =
   rw [Finset.powerset_card_disjiUnion]
   rw [Finset.card_disjiUnion]
   simp
+
