@@ -388,4 +388,5 @@ theorem reverse_regular : ∀ l, is_regular l → is_regular (reverse_lang l) :=
     apply hrev
     simp
     assumption
+
 end RegExp
